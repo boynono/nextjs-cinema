@@ -1,16 +1,19 @@
 import AnimeList from "@/components/AnimeList";
 import Header from "@/components/AnimeList/Header";
+import { getAnimeResponse } from "./libs/api-libs";
 
-const Home = async () => {
-  const response1 = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`
-  );
-  const topAnime = await response1.json();
+const Page = async () => {
+  const topAnime = await getAnimeResponse("top/anime", "limit=8");
 
-  const response2 = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/manga?limit=8`
-  );
-  const manga = await response2.json();
+  // const response1 = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`
+  // );
+  // const topAnime = await response1.json();
+
+  // const response2 = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_BASE_URL}/top/manga?limit=8`
+  // );
+  // const manga = await response2.json();
 
   return (
     <>
@@ -19,11 +22,11 @@ const Home = async () => {
         <AnimeList dataApi={topAnime} />
       </section>
 
-      <section>
+      {/* <section>
         <Header title='New' linkHref='/new' linkTitle='lihat' />
         <AnimeList dataApi={manga} />
-      </section>
+      </section> */}
     </>
   );
 };
-export default Home;
+export default Page;
